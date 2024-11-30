@@ -1,4 +1,3 @@
-
 package com.example.capstone_project_orangehrm.POM;
 
 import org.openqa.selenium.By;
@@ -11,20 +10,27 @@ import java.time.Duration;
 
 public class LoginPage {
     private WebDriver driver;
+
+    // Locators for login page elements
     private By usernameField = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input");
     private By passwordField = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input");
     private By loginButton = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button");
     private By forgotPasswordLink = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[4]/p");
 
-    // After Forgot Password
+    // Locators for Forgot Password page elements
     private By usernameAfterForgotField = By.xpath("/html/body/div/div[1]/div[1]/div/form/div[1]/div/div[2]/input");
     private By resetButton = By.xpath("/html/body/div/div[1]/div[1]/div/form/div[2]/button[2]");
     private By resetPasswordVerifyText = By.xpath("/html/body/div/div[1]/div[1]/div/h6");
+
+    // Locators for error messages
+    private By passwordErrorMessage = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/span");
+    private By invalidErrorMessage = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/div[1]/div[1]/div[1]/p");
 
     // Constructor
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
+
     // Utility method to wait for an element to be visible
     private WebElement waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -40,60 +46,66 @@ public class LoginPage {
     // Methods to interact with the login page
     public void enterUsername(String username) {
         WebElement usernameElement = waitForElementToBeVisible(usernameField);
-        usernameElement.clear();  // Clear any pre-existing text
+        usernameElement.clear();
         usernameElement.sendKeys(username);
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
     }
 
     public void enterPassword(String password) {
         WebElement passwordElement = waitForElementToBeVisible(passwordField);
-        passwordElement.clear();  // Clear any pre-existing text
+        passwordElement.clear();
         passwordElement.sendKeys(password);
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
     }
+
     public void clickLogin() {
         WebElement loginButtonElement = waitForElementToBeClickable(loginButton);
         loginButtonElement.click();
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500));
     }
+
     public void clickForgotPassword() {
         WebElement forgotPasswordElement = waitForElementToBeClickable(forgotPasswordLink);
         forgotPasswordElement.click();
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500));
     }
+
     public void enterUsernameAfterForgot(String username) {
         WebElement usernameAfterForgotElement = waitForElementToBeVisible(usernameAfterForgotField);
         usernameAfterForgotElement.clear();
         usernameAfterForgotElement.sendKeys(username);
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500));
     }
 
     public void clickResetButton() {
         WebElement resetButtonElement = waitForElementToBeClickable(resetButton);
         resetButtonElement.click();
-        waitFor(2000);  // Wait for 2 seconds
+        waitFor(Duration.ofMillis(500));
     }
 
     public String getResetPasswordVerifyText() {
         WebElement verifyTextElement = waitForElementToBeVisible(resetPasswordVerifyText);
-        waitFor(2000);
+        waitFor(Duration.ofMillis(500));
         return verifyTextElement.getText();
     }
-    private By password_errorMessage = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/span");  // Replace with correct XPath if necessary
+
     public String getErrorMessage() {
-        WebElement errorElement = waitForElementToBeVisible(password_errorMessage);
+        WebElement errorElement = waitForElementToBeVisible(passwordErrorMessage);
         return errorElement.getText();
     }
-    private By invaliderrorMessage = By.xpath("/html/body/div/div[1]/div/div[1]/div/div[2]/div[2]/div[1]/div[1]/div[1]/p");  // Your provided XPath
-    public String getErrorMessageinvalidlogin() {
-        WebElement errorElement = waitForElementToBeVisible(invaliderrorMessage);
-        return errorElement.getText();  // Get the text content of the error message
+
+    public String getErrorMessageInvalidLogin() {
+        WebElement errorElement = waitForElementToBeVisible(invalidErrorMessage);
+        return errorElement.getText();
     }
-    private void waitFor(long milliseconds) {
+
+    // Utility method to add a short wait (non-blocking)
+    private void waitFor(Duration duration) {
         try {
-            Thread.sleep(milliseconds);
+            Thread.sleep(duration.toMillis());
         } catch (InterruptedException e) {
-            e.printStackTrace();  // Log the interruption if it occurs
+            Thread.currentThread().interrupt(); // Restore the interrupted status
+            e.printStackTrace();
         }
     }
 }
