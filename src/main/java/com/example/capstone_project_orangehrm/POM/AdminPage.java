@@ -1,5 +1,6 @@
 package com.example.capstone_project_orangehrm.POM;
 
+<<<<<<< HEAD
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +9,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
+=======
+>>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
 public class AdminPage {
-    private WebDriver driver;
 
+<<<<<<< HEAD
     // Locators for elements on the page
     private By adminTab = By.xpath("/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a/span\n");  // Adjust this according to actual admin tab locator
     private By addUserButton = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button");
@@ -152,5 +155,7 @@ public class AdminPage {
         // Optionally, you could log a message that the delete action was confirmed
         System.out.println("Delete action confirmed successfully.");
     }
+=======
+>>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
 }
 

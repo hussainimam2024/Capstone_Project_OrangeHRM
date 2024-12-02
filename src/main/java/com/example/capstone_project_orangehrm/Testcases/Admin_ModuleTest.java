@@ -1,5 +1,6 @@
 package com.example.capstone_project_orangehrm.Testcases;
 
+<<<<<<< HEAD
 import com.example.capstone_project_orangehrm.POM.AdminPage;
 import com.example.capstone_project_orangehrm.POM.LoginPage;
 import com.example.capstone_project_orangehrm.base.BaseClass;
@@ -57,4 +58,7 @@ public class Admin_ModuleTest extends BaseClass {
         adminPage.clickDeleteUser();
         adminPage.clickConfirmDelete();
     }
+=======
+public class Admin_ModuleTest {
+>>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
 }
