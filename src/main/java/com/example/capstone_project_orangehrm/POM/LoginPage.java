@@ -30,25 +30,20 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
-
-    // Utility method to wait for an element to be visible
     private WebElement waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-
-    // Utility method to wait for an element to be clickable
     private WebElement waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
-    // Methods to interact with the login page
     public void enterUsername(String username) {
         WebElement usernameElement = waitForElementToBeVisible(usernameField);
         usernameElement.clear();
         usernameElement.sendKeys(username);
         waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
+        System.out.println("Username entered successfully.");
     }
 
     public void enterPassword(String password) {
@@ -56,18 +51,21 @@ public class LoginPage {
         passwordElement.clear();
         passwordElement.sendKeys(password);
         waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
+        System.out.println("Password entered successfully.");
     }
 
     public void clickLogin() {
         WebElement loginButtonElement = waitForElementToBeClickable(loginButton);
         loginButtonElement.click();
         waitFor(Duration.ofMillis(500));
+        System.out.println("Login button clicked successfully.");
     }
 
     public void clickForgotPassword() {
         WebElement forgotPasswordElement = waitForElementToBeClickable(forgotPasswordLink);
         forgotPasswordElement.click();
         waitFor(Duration.ofMillis(500));
+        System.out.println("Forgot password link clicked successfully.");
     }
 
     public void enterUsernameAfterForgot(String username) {
@@ -75,28 +73,36 @@ public class LoginPage {
         usernameAfterForgotElement.clear();
         usernameAfterForgotElement.sendKeys(username);
         waitFor(Duration.ofMillis(500));
+        System.out.println("Username entered after forgot password successfully.");
     }
 
     public void clickResetButton() {
         WebElement resetButtonElement = waitForElementToBeClickable(resetButton);
         resetButtonElement.click();
         waitFor(Duration.ofMillis(500));
+        System.out.println("Reset button clicked successfully.");
     }
 
     public String getResetPasswordVerifyText() {
         WebElement verifyTextElement = waitForElementToBeVisible(resetPasswordVerifyText);
         waitFor(Duration.ofMillis(500));
-        return verifyTextElement.getText();
+        String text = verifyTextElement.getText();
+        System.out.println("Reset password verification text fetched successfully.");
+        return text;
     }
 
     public String getErrorMessage() {
         WebElement errorElement = waitForElementToBeVisible(passwordErrorMessage);
-        return errorElement.getText();
+        String errorMessage = errorElement.getText();
+        System.out.println("Password error message fetched successfully.");
+        return errorMessage;
     }
 
     public String getErrorMessageInvalidLogin() {
         WebElement errorElement = waitForElementToBeVisible(invalidErrorMessage);
-        return errorElement.getText();
+        String errorMessage = errorElement.getText();
+        System.out.println("Invalid login error message fetched successfully.");
+        return errorMessage;
     }
 
     // Utility method to add a short wait (non-blocking)
@@ -109,3 +115,4 @@ public class LoginPage {
         }
     }
 }
+

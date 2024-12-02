@@ -16,7 +16,6 @@ public class Login_AdminTest extends BaseClass {
         loginPage = new LoginPage(driver);
     }
 
-    // Test for blank username and password
     @Test(priority = 1)
     public void testLoginWithBlankUsernameAndPassword() {
         String baseUrl = getTestData("baseUrl");
@@ -25,7 +24,6 @@ public class Login_AdminTest extends BaseClass {
         loginPage.enterUsername("");
         loginPage.enterPassword("");
         loginPage.clickLogin();
-
         String errorMessage = loginPage.getErrorMessage();
         Assert.assertTrue(errorMessage.contains("Required"), "Error message for blank credentials is correct.");
     }
@@ -49,7 +47,6 @@ public class Login_AdminTest extends BaseClass {
     public void testInvalidLogin() {
         String baseUrl = getTestData("baseUrl");
         driver.get(baseUrl);
-
         loginPage.enterUsername("invalidUser");
         loginPage.enterPassword("invalidPassword");
         loginPage.clickLogin();
