@@ -1,6 +1,5 @@
 package com.example.capstone_project_orangehrm.Testcases;
 
-<<<<<<< HEAD
 import com.example.capstone_project_orangehrm.POM.AdminPage;
 import com.example.capstone_project_orangehrm.POM.LoginPage;
 import com.example.capstone_project_orangehrm.base.BaseClass;
@@ -11,6 +10,7 @@ import org.testng.annotations.Test;
 public class Admin_ModuleTest extends BaseClass {
     private LoginPage loginPage;
     private AdminPage adminPage;
+
     @BeforeMethod
     public void setUpTest() {
         // Initialize the base setup and instantiate the page objects
@@ -49,7 +49,7 @@ public class Admin_ModuleTest extends BaseClass {
         adminPage.clickSave();
 
         // Perform edit user operation
-       // Fetch new username for editing from test data
+        // Fetch new username for editing from test data
         adminPage.clickEditUser();
         String newUsername = getTestData("Edit_username");
         adminPage.editUserfields(newUsername);
@@ -58,7 +58,4 @@ public class Admin_ModuleTest extends BaseClass {
         adminPage.clickDeleteUser();
         adminPage.clickConfirmDelete();
     }
-=======
-public class Admin_ModuleTest {
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
 }
