@@ -30,11 +30,6 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
-<<<<<<< HEAD
-=======
-
-    // Utility method to wait for an element to be visible
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     private WebElement waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -48,10 +43,7 @@ public class LoginPage {
         usernameElement.clear();
         usernameElement.sendKeys(username);
         waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
-<<<<<<< HEAD
         System.out.println("Username entered successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public void enterPassword(String password) {
@@ -59,30 +51,21 @@ public class LoginPage {
         passwordElement.clear();
         passwordElement.sendKeys(password);
         waitFor(Duration.ofMillis(500)); // Use shorter, non-blocking wait
-<<<<<<< HEAD
         System.out.println("Password entered successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public void clickLogin() {
         WebElement loginButtonElement = waitForElementToBeClickable(loginButton);
         loginButtonElement.click();
         waitFor(Duration.ofMillis(500));
-<<<<<<< HEAD
         System.out.println("Login button clicked successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public void clickForgotPassword() {
         WebElement forgotPasswordElement = waitForElementToBeClickable(forgotPasswordLink);
         forgotPasswordElement.click();
         waitFor(Duration.ofMillis(500));
-<<<<<<< HEAD
         System.out.println("Forgot password link clicked successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public void enterUsernameAfterForgot(String username) {
@@ -90,54 +73,36 @@ public class LoginPage {
         usernameAfterForgotElement.clear();
         usernameAfterForgotElement.sendKeys(username);
         waitFor(Duration.ofMillis(500));
-<<<<<<< HEAD
         System.out.println("Username entered after forgot password successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public void clickResetButton() {
         WebElement resetButtonElement = waitForElementToBeClickable(resetButton);
         resetButtonElement.click();
         waitFor(Duration.ofMillis(500));
-<<<<<<< HEAD
         System.out.println("Reset button clicked successfully.");
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public String getResetPasswordVerifyText() {
         WebElement verifyTextElement = waitForElementToBeVisible(resetPasswordVerifyText);
         waitFor(Duration.ofMillis(500));
-<<<<<<< HEAD
         String text = verifyTextElement.getText();
         System.out.println("Reset password verification text fetched successfully.");
         return text;
-=======
-        return verifyTextElement.getText();
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public String getErrorMessage() {
         WebElement errorElement = waitForElementToBeVisible(passwordErrorMessage);
-<<<<<<< HEAD
         String errorMessage = errorElement.getText();
         System.out.println("Password error message fetched successfully.");
         return errorMessage;
-=======
-        return errorElement.getText();
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     public String getErrorMessageInvalidLogin() {
         WebElement errorElement = waitForElementToBeVisible(invalidErrorMessage);
-<<<<<<< HEAD
         String errorMessage = errorElement.getText();
         System.out.println("Invalid login error message fetched successfully.");
         return errorMessage;
-=======
-        return errorElement.getText();
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
     }
 
     // Utility method to add a short wait (non-blocking)
@@ -150,4 +115,3 @@ public class LoginPage {
         }
     }
 }
-

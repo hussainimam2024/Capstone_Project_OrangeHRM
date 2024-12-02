@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 public class Admin_ModuleTest extends BaseClass {
     private LoginPage loginPage;
     private AdminPage adminPage;
-
     @BeforeMethod
     public void setUpTest() {
         // Initialize the base setup and instantiate the page objects
@@ -57,5 +56,7 @@ public class Admin_ModuleTest extends BaseClass {
         // Perform delete user operation
         adminPage.clickDeleteUser();
         adminPage.clickConfirmDelete();
+        adminPage.Jobmenubutton();
+        adminPage.JobTitleOptions();
     }
 }

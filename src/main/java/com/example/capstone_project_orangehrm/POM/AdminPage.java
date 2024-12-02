@@ -1,6 +1,5 @@
 package com.example.capstone_project_orangehrm.POM;
 
-<<<<<<< HEAD
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
 public class AdminPage {
+    private WebDriver driver;
 
-<<<<<<< HEAD
     // Locators for elements on the page
     private By adminTab = By.xpath("/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a/span\n");  // Adjust this according to actual admin tab locator
     private By addUserButton = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button");
@@ -26,6 +23,9 @@ public class AdminPage {
     private By savebutton_Edit = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[2]/button[2]");
     private By deleteUserButton = By.xpath("(//button[@type='button'])[9]");
     private By confirmDeleteButton = By.xpath("/html/body/div/div[3]/div/div/div/div[3]/button[2]");
+    private By Jobmenu = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[2]/span");
+    private By JobTitle = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[2]/ul/li[1]/a");
+
 
     public AdminPage(WebDriver driver) {
         this.driver = driver;
@@ -155,7 +155,21 @@ public class AdminPage {
         // Optionally, you could log a message that the delete action was confirmed
         System.out.println("Delete action confirmed successfully.");
     }
-=======
->>>>>>> a30d47b917ee089a67c55e7cba98888e404405ed
-}
 
+    public void Jobmenubutton(){
+        WebElement job = driver.findElement(Jobmenu);
+        job.click();
+        try {
+            Thread.sleep(1000);  // 10 seconds delay to allow manual data input
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Job button button clicked successfully.");
+
+    }
+    public void JobTitleOptions(){
+        WebElement title = driver.findElement(JobTitle);
+        title.click();
+        System.out.println("Job Title button clicked");
+    }
+}
