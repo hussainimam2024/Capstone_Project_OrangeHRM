@@ -25,6 +25,8 @@ public class AdminPage {
     private By confirmDeleteButton = By.xpath("/html/body/div/div[3]/div/div/div/div[3]/button[2]");
     private By Jobmenu = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[2]/span");
     private By JobTitle = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[2]/ul/li[1]/a");
+    private By NationalitiesTab = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[4]/ul/div[2]/li/a\n");
+
 
 
     public AdminPage(WebDriver driver) {
@@ -90,14 +92,22 @@ public class AdminPage {
 
     // Method to click Edit User Button
     public void clickEditUser() {
-        // Scroll the page slightly to bring the element into view
+        // Smooth scroll the page with medium speed
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, 350);");
+        for (int i = 0; i < 8; i++) {  // Scroll 8 times (adjust this for the distance to scroll)
+            js.executeScript("window.scrollBy(0, 45);");  // Scroll down by 45px each time
+            try {
+                Thread.sleep(120);  // Adjust the sleep time to control the scroll speed (120ms for medium speed)
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         // Locate the edit button and click it
         WebElement editButton = driver.findElement(editUserButton);
         editButton.click();
         System.out.println("Edit user button clicked successfully.");
     }
+
 
     // Method to edit username and save changes
     public void editUserfields(String newUsername) {
@@ -171,5 +181,16 @@ public class AdminPage {
         WebElement title = driver.findElement(JobTitle);
         title.click();
         System.out.println("Job Title button clicked");
+        try{
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+//    public void NationalTab(){
+//        WebElement element = driver.findElement(NationalitiesTab);
+//        element.click();
+//        System.out.println("National button clicked");
+//    }
 }
