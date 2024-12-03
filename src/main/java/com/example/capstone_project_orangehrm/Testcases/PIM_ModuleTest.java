@@ -52,13 +52,8 @@ public class PIM_ModuleTest extends BaseClass {
         loginPage.enterPassword(password);
         loginPage.clickLogin();
 
-        // Assert login success
         Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed for valid credentials.");
-
-        // Navigate to PIM module
         pimPage.clickPimTab();
-
-        // Search employee by ID
         pimPage.searchEmployeeById(employeeId);
 
         // Verify employee details are displayed

@@ -48,13 +48,12 @@ public class PIMPage {
         System.out.println("Search button clicked successfully.");
     }
 
-    // View employee details using search functionality
     public void viewEmployeeDetails() {
         // Smooth scroll down
         // Smooth scroll down
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        for (int i = 0; i < 15; i++) {  // Scroll 15 times (adjust this for the distance to scroll)
-            js.executeScript("window.scrollBy(0, 60);");  // Scroll down by 60px each time
+        for (int i = 0; i < 10; i++) {  // Scroll 15 times (adjust this for the distance to scroll)
+            js.executeScript("window.scrollBy(0, 40);");  // Scroll down by 60px each time
             try {
                 Thread.sleep(150);  // Adjust the sleep time to control the scroll speed (150ms for smooth speed)
             } catch (InterruptedException e) {
@@ -81,26 +80,39 @@ public class PIMPage {
         return recordsText;
     }
 
-    // Search employee by ID with smooth scrolling
     public void searchEmployeeById(String employeeId) {
         WebElement empIdField = waitForElementToBeVisible(searchEmpID);
         empIdField.clear();
         empIdField.sendKeys(employeeId);
         searchButtonClick();
         System.out.println("Searched employee by ID: " + employeeId);
-
-        // Smooth scroll down
-        // Smooth scroll down
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        for (int i = 0; i < 15; i++) {  // Scroll 15 times (adjust this for the distance to scroll)
-            js.executeScript("window.scrollBy(0, 60);");  // Scroll down by 60px each time
+        for (int i = 0; i < 8; i++) {
+            js.executeScript("window.scrollBy(0, 60);");
             try {
-                Thread.sleep(150);  // Adjust the sleep time to control the scroll speed (150ms for smooth speed)
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+        try {
+            String idXpath = "/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]/div";
+            String firstNameXpath = "/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[3]/div";
+            String lastNameXpath = "/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[4]/div";
 
+            String id = driver.findElement(By.xpath(idXpath)).getText();
+            String firstName = driver.findElement(By.xpath(firstNameXpath)).getText();
+            String lastName = driver.findElement(By.xpath(lastNameXpath)).getText();
+
+            System.out.println("Employee Details:");
+            System.out.println("ID: " + id);
+            System.out.println("First Name: " + firstName);
+            System.out.println("Last Name: " + lastName);
+        } catch (Exception e) {
+            System.out.println("Error fetching employee details: " + e.getMessage());
+        }
     }
+
+
 
 }
