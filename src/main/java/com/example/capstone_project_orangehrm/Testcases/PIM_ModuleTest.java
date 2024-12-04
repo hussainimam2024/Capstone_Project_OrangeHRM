@@ -83,8 +83,7 @@ public class PIM_ModuleTest extends BaseClass {
 //        pimPage.enterFirstName(firstName);
 //        pimPage.enterLastName(lastName);
 //        pimPage.enterEmployeeId(employeeId);
-        pimPage.enterFirstName("");
-        pimPage.enterLastName("");
+
         pimPage.enterEmployeeId(employeeId);
         // Save the new employee
         pimPage.clickSaveButton();

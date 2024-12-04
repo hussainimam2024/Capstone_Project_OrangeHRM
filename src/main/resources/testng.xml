@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <listeners>
+        <listener class-name="com.example.capstone_project_orangehrm.listeners.ExtentTestListener"/>
+    </listeners>
+    <test name="AllTests">
+        <classes>
+            <class name="com.example.capstone_project_orangehrm.Testcases.Login_AdminTest"/>
+            <class name="com.example.capstone_project_orangehrm.Testcases.PIM_ModuleTest"/>
+            <class name="com.example.capstone_project_orangehrm.Testcases.Admin_ModuleTest"/>
+            <class name="com.example.capstone_project_orangehrm.Testcases.Leave_ModuleTest"/>
+            <class name="com.example.capstone_project_orangehrm.Testcases.Time_ModuleTest"/>
+        </classes>
+    </test>
+</suite>
