@@ -29,6 +29,13 @@ public class PIMPage {
     private By reportbutton = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[1]/div/div[3]/div/button[3]");
     private By verifyreportheading = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[1]/h6");
 
+    //edit personal info
+    private By firstNameedit = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[1]/div[2]/input");
+    private By lastnameedit  =By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[3]/div[2]/input");
+    private By empid = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+    private By saveafteredit = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/button");
+
+
 
     // Constructor
     public PIMPage(WebDriver driver) {
@@ -69,6 +76,7 @@ public class PIMPage {
         firstNameField.clear();
         firstNameField.sendKeys(firstName);
         System.out.println("Entered first name: " + firstName);
+
     }
 
     // Enter last name
@@ -91,6 +99,10 @@ public class PIMPage {
     public void clickSaveButton() {
         waitForElementToBeClickable(savebutton).click();
         System.out.println("Clicked Save button.");
+        waitForElementToBeClickable(saveafteredit).click();
+        System.out.println("Clicked Save button after updating personal details.");
+
+
     }
     // Search employee by clicking the Search button
     public void searchButtonClick() {
@@ -198,7 +210,55 @@ public class PIMPage {
         }
     }
 
-
+    //update personinfo testcases
+    public void updateFirstName(String firstName) {
+        try {
+            WebElement firstNameField = waitForElementToBeVisible(firstNameedit);
+            firstNameField.clear();
+            firstNameField.sendKeys(firstName);
+            System.out.println("Updated first name: " + firstName);
+        } catch (Exception e) {
+            System.out.println("Failed to update first name: " + e.getMessage());
+        }
+    }
+    public void updateLastName(String lastName) {
+        try {
+            WebElement lastNameField = waitForElementToBeVisible(lastnameedit);
+            lastNameField.clear();
+            lastNameField.sendKeys(lastName);
+            System.out.println("Updated last name: " + lastName);
+        } catch (Exception e) {
+            System.out.println("Failed to update last name: " + e.getMessage());
+        }
+    }
+    public void updateEmployeeId(String employeeId) {
+        try {
+            WebElement employeeIdField = waitForElementToBeVisible(empid);
+            employeeIdField.clear();
+            employeeIdField.sendKeys(employeeId);
+            System.out.println("Updated employee ID: " + employeeId);
+        } catch (Exception e) {
+            System.out.println("Failed to update employee ID: " + e.getMessage());
+        }
+    }
+    public void clickSaveButtonAfterEdit() {
+        try {
+            WebElement saveButton = waitForElementToBeClickable(saveafteredit);
+            saveButton.click();
+            System.out.println("Clicked Save button after editing personal details.");
+        } catch (Exception e) {
+            System.out.println("Failed to click Save button: " + e.getMessage());
+        }
+    }
+    public void scrollToPersonalDetailsEdit() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", waitForElementToBeVisible(firstNameedit));
+            System.out.println("Scrolled to personal details edit section.");
+        } catch (Exception e) {
+            System.out.println("Error while scrolling: " + e.getMessage());
+        }
+    }
 
 
 }

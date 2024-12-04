@@ -52,10 +52,47 @@ public class PIM_ModuleTest extends BaseClass {
         // Save the new employee
         pimPage.clickSaveButton();
     }
-
-
-
     @Test(priority = 2)
+    public void addEmployee_withoutdetails() {
+        String baseUrl = getTestData("baseUrl");
+        String username = getTestData("Ausername");
+        String password = getTestData("Apassword");
+        String employeeId = getTestData("Pemployee_Id");
+        String firstName = getTestData("Pemployee_First");
+        String lastName = getTestData("Pemployee_Last");
+
+        // Navigate to the base URL
+        driver.get(baseUrl);
+
+        // Log in to the application
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+
+        // Verify successful login
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed for valid credentials.");
+
+        // Navigate to the PIM module
+        pimPage.clickPimTab();
+
+        // Click the Add Employee button
+        pimPage.clickAddButton();
+
+        // Enter employee details
+//        pimPage.enterFirstName(firstName);
+//        pimPage.enterLastName(lastName);
+//        pimPage.enterEmployeeId(employeeId);
+        pimPage.enterFirstName("");
+        pimPage.enterLastName("");
+        pimPage.enterEmployeeId(employeeId);
+        // Save the new employee
+        pimPage.clickSaveButton();
+        System.out.println("Employee not added due to blank firstname and lastname");
+    }
+
+
+
+    @Test(priority = 3)
     public void testPIMOperation() {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
@@ -74,7 +111,7 @@ public class PIM_ModuleTest extends BaseClass {
         Assert.assertNotNull(totalRecords, "Total records value is null.");
         System.out.println("Total records value is valid: " + totalRecords);
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void ViewEmployeeByid() {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
@@ -98,7 +135,7 @@ public class PIM_ModuleTest extends BaseClass {
         Assert.assertNotNull(totalRecords, "No records found for the provided employee ID.");
         System.out.println("Employee ID search successful. Total records displayed: " + totalRecords);
     }
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void ViewReports(){
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
@@ -114,7 +151,7 @@ public class PIM_ModuleTest extends BaseClass {
         String heading = pimPage.Verifyheading();
         System.out.println(heading);
     }
-    @Test(priority = 5)
+    @Test(priority = 6)
     public void ESS() {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
@@ -131,6 +168,29 @@ public class PIM_ModuleTest extends BaseClass {
         String empName = pimPage.VerifyInfoEmp_name(); // Fetching employee name
         System.out.println("Verified employee name: " + empName); // Printing employee name
     }
+    @Test(priority = 7)
+    public void updatePersonalInfo() {
+        // Retrieve test data
+        String baseUrl = getTestData("baseUrl");
+        String username = getTestData("Ausername");
+        String password = getTestData("Apassword");
+        String employeeId = getTestData("Pemployee_Id");
+        String firstName = getTestData("Pemployee_First");
+        String lastName = getTestData("Pemployee_Last");
+        driver.get(baseUrl);
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed for valid credentials.");
+        pimPage.clickInfoTab();
+        pimPage.updateFirstName(firstName);
+        pimPage.updateLastName(lastName);
+        pimPage.updateEmployeeId("");
+        pimPage.clickSaveButtonAfterEdit();
+        pimPage.scrollToPersonalDetailsEdit();
+
+    }
+
 
 
 

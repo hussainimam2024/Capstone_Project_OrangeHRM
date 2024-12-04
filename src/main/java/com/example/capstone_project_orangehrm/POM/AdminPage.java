@@ -135,9 +135,15 @@ public class AdminPage {
     }
 
     public void clickDeleteUser() {
-        // Scroll the page slightly to bring the element into view
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, 350);");
+        for (int i = 0; i < 5; i++) {
+            js.executeScript("window.scrollBy(0, 45);");
+            try {
+                Thread.sleep(150);  // Optional, to mimic natural scrolling
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         // Wait for the delete button to be clickable and click it
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(deleteUserButton));
