@@ -4,6 +4,7 @@ import com.example.capstone_project_orangehrm.POM.LoginPage;
 import com.example.capstone_project_orangehrm.POM.PIMPage;
 import com.example.capstone_project_orangehrm.base.BaseClass;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -189,6 +190,13 @@ public class PIM_ModuleTest extends BaseClass {
         pimPage.clickSaveButtonAfterEdit();
         pimPage.scrollToPersonalDetailsEdit();
 
+    }
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+            System.out.println("Browser closed successfully after the test.");
+        }
     }
 
 
