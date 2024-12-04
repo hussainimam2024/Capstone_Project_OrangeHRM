@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class Login_AdminTest extends BaseClass {
     private LoginPage loginPage;
-    private static final String EXCEL_FILE_PATH = "C:\\Users\\imam.hussain\\IdeaProjects\\Capstone_Project_OrangeHRM\\ExcelDatas.xlsx";
+    private static final String EXCEL_FILE_PATH = "C:\\Users\\imam.hussain\\IdeaProjects\\Capstone_Project_OrangeHRM\\ExcelDatafinal.xlsx";
 
     @BeforeMethod
     public void setUpTest() {
