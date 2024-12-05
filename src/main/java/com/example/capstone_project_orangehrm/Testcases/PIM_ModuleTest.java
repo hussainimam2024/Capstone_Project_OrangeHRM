@@ -190,6 +190,31 @@ public class PIM_ModuleTest extends BaseClass {
         pimPage.scrollToPersonalDetailsEdit();
 
     }
+    @Test(priority = 8)
+    public void Configuration() {
+        String baseUrl = getTestData("baseUrl");
+        String username = getTestData("Ausername");
+        String password = getTestData("Apassword");
+        driver.get(baseUrl);
+
+        // Login actions
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard"), "Login failed for valid credentials.");
+        pimPage.clickPimTab();
+        pimPage.clickConfigureMenu();
+        pimPage.clickOptionalOption();
+        Assert.assertEquals(pimPage.getVerifyTextOption(), "Optional Fields", "Optional Fields text verification failed.");
+        pimPage.toggleButton1();
+        pimPage.toggleButton2();
+        pimPage.clickConfigureSave();
+
+        // Navigate to Custom Fields
+        pimPage.clickConfigureMenu();
+        pimPage.clickCustomOption();
+        Assert.assertEquals(pimPage.getVerifyTextCustom(), "Custom Fields", "Custom Fields text verification failed.");
+    }
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

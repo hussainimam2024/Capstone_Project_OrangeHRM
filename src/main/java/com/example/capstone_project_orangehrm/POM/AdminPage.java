@@ -10,8 +10,6 @@ import java.time.Duration;
 
 public class AdminPage {
     private WebDriver driver;
-
-    // Locators for elements on the page
     private By adminTab = By.xpath("/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a/span\n");  // Adjust this according to actual admin tab locator
     private By addUserButton = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button");
     private By usernameField = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input");
@@ -27,61 +25,47 @@ public class AdminPage {
     private By JobTitle = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[2]/ul/li[1]/a");
     private By NationalitiesTab = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[4]/ul/div[2]/li/a\n");
 
-
-
     public AdminPage(WebDriver driver) {
         this.driver = driver;
     }
-
     private WebElement waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1000));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-
     private WebElement waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
-    // Method to wait for the admin tab and click it
     public void clickAdminTab() {
         waitForElementToBeClickable(adminTab).click();
-        // Wait for 10 seconds after clicking Admin tab
         try {
-            Thread.sleep(1000);  // 10 seconds delay to allow manual data input
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Admin tab clicked successfully.");
     }
-
     public void clickAddUser() {
         WebElement addUserElement = driver.findElement(addUserButton);
         addUserElement.click();
         try {
-            Thread.sleep(10000);  // 10 seconds delay to allow manual data input
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Add user button clicked successfully.");
     }
-
-    // Method to fill in user details
     public void fillInUserDetails(String username, String password, String confirmPassword) {
         driver.findElement(usernameField).sendKeys(username);
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(confirmPasswordField).sendKeys(confirmPassword);
         System.out.println("User details filled successfully.");
     }
-
-    // Method to save the user details and wait before proceeding
     public void clickSave() {
         driver.findElement(saveButton).click();
         waitForCompletion_Save(); // Introduce a delay
         System.out.println("User details saved successfully.");
     }
-
-    // Helper method to wait for a specific duration
     private void waitForCompletion_Save() {
         try {
             Thread.sleep(10000); // Wait for 10 seconds
@@ -89,10 +73,7 @@ public class AdminPage {
             e.printStackTrace();
         }
     }
-
-    // Method to click Edit User Button
     public void clickEditUser() {
-        // Smooth scroll the page with medium speed
         JavascriptExecutor js = (JavascriptExecutor) driver;
         for (int i = 0; i < 8; i++) {  // Scroll 8 times (adjust this for the distance to scroll)
             js.executeScript("window.scrollBy(0, 45);");  // Scroll down by 45px each time

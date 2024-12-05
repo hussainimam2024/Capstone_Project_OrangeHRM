@@ -37,6 +37,9 @@ public class PIMPage {
 
 
 
+
+
+
     // Constructor
     public PIMPage(WebDriver driver) {
         this.driver = driver;
@@ -259,6 +262,89 @@ public class PIMPage {
             System.out.println("Error while scrolling: " + e.getMessage());
         }
     }
+
+    //configure field
+    private By configuremenu = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/span");
+    private By optionalOption  = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/ul/li[1]/a");
+    private By verifyTextOption = By.cssSelector(".oxd-text.oxd-text--p.orangehrm-main-title");
+    private By toggleButton1  =By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div/div/label/span");
+    private By toggleButton2 = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[1]/div/label/span");
+    private By configureSave = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[3]/button");
+    private By customOption  = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/ul/li[2]/a");
+    private By verifytextcustom = By.cssSelector(".oxd-text.oxd-text--h6.orangehrm-main-title");
+
+    // Click on Configure Menu
+    public void clickConfigureMenu() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement configureMenuElement = wait.until(ExpectedConditions.elementToBeClickable(configuremenu));
+        configureMenuElement.click();
+        System.out.println("Configure Menu clicked.");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Click on Optional Option
+    public void clickOptionalOption() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement optionalOptionElement = wait.until(ExpectedConditions.elementToBeClickable(optionalOption));
+        optionalOptionElement.click();
+        System.out.println("Optional Option clicked.");
+    }
+
+    // Get text from Optional Option page
+    public String getVerifyTextOption() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement verifyTextOptionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyTextOption));
+        String text = verifyTextOptionElement.getText();
+        System.out.println("Retrieved text from Optional Option page: " + text);
+        return text;
+    }
+
+    // Toggle Button 1
+    public void toggleButton1() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toggleButton1Element = wait.until(ExpectedConditions.elementToBeClickable(toggleButton1));
+        toggleButton1Element.click();
+        System.out.println("Toggle Button 1 clicked.");
+    }
+
+    // Toggle Button 2
+    public void toggleButton2() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement toggleButton2Element = wait.until(ExpectedConditions.elementToBeClickable(toggleButton2));
+        toggleButton2Element.click();
+        System.out.println("Toggle Button 2 clicked.");
+    }
+
+    // Click Save in Configure Menu
+    public void clickConfigureSave() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement configureSaveElement = wait.until(ExpectedConditions.elementToBeClickable(configureSave));
+        configureSaveElement.click();
+        System.out.println("Save button clicked in Configure Menu.");
+    }
+
+    // Click on Custom Option
+    public void clickCustomOption() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement customOptionElement = wait.until(ExpectedConditions.elementToBeClickable(customOption));
+        customOptionElement.click();
+        System.out.println("Custom Option clicked.");
+    }
+
+    // Get text from Custom Option page
+    public String getVerifyTextCustom() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement verifyTextCustomElement = wait.until(ExpectedConditions.visibilityOfElementLocated(verifytextcustom));
+        String text = verifyTextCustomElement.getText();
+        System.out.println("Retrieved text from Custom Option page: " + text);
+        return text;
+    }
+
 
 
 }

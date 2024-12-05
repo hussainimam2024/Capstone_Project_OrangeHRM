@@ -88,6 +88,7 @@ public class LoginPage {
         waitFor(Duration.ofMillis(500));
         String text = verifyTextElement.getText();
         System.out.println("Reset password verification text fetched successfully.");
+        System.out.println("Reset password is happening even with unregistered user!");
         return text;
     }
 
