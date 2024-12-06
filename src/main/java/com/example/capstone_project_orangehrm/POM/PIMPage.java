@@ -11,12 +11,9 @@ import java.time.Duration;
 
 public class PIMPage {
     private WebDriver driver;
-
-    // Locators
     private By pimTab = By.xpath("/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span");
     private By InfoTab = By.xpath("/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a/span");
     private By infoname = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[1]/div[1]/div[1]/h6");
-
     private By AddButton = By.xpath("(//a[normalize-space()='Add Employee'])[1]");
     private By Empfirstname = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[1]/div[2]/input");
     private By Emplastname = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[1]/div/div/div[2]/div[3]/div[2]/input");
@@ -28,36 +25,21 @@ public class PIMPage {
     private By Reporttab  = By.cssSelector("header[class='oxd-topbar'] li:nth-child(4) a:nth-child(1)");
     private By reportbutton = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[1]/div/div[3]/div/button[3]");
     private By verifyreportheading = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[1]/h6");
-
-    //edit personal info
     private By firstNameedit = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[1]/div[2]/input");
     private By lastnameedit  =By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[1]/div/div/div/div[2]/div[3]/div[2]/input");
     private By empid = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[2]/div[1]/div[1]/div/div[2]/input");
     private By saveafteredit = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/div/div[2]/div[1]/form/div[4]/button");
-
-
-
-
-
-
-    // Constructor
     public PIMPage(WebDriver driver) {
         this.driver = driver;
     }
-
-        // Wait for element to be visible
     private WebElement waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
-
-    // Wait for element to be clickable
     private WebElement waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
-    // Click PIM tab
     public void clickPimTab() {
         waitForElementToBeClickable(pimTab).click();
         System.out.println("PIM tab clicked successfully.");
@@ -66,14 +48,10 @@ public class PIMPage {
         waitForElementToBeClickable(InfoTab).click();
         System.out.println("Info tab clicked successfully");
     }
-
-    // Click Add Employee button
     public void clickAddButton() {
         waitForElementToBeClickable(AddButton).click();
         System.out.println("Add Employee button clicked successfully.");
     }
-
-    // Enter first name
     public void enterFirstName(String firstName) {
         WebElement firstNameField = waitForElementToBeVisible(Empfirstname);
         firstNameField.clear();
@@ -81,38 +59,28 @@ public class PIMPage {
         System.out.println("Entered first name: " + firstName);
 
     }
-
-    // Enter last name
     public void enterLastName(String lastName) {
         WebElement lastNameField = waitForElementToBeVisible(Emplastname);
         lastNameField.clear();
         lastNameField.sendKeys(lastName);
         System.out.println("Entered last name: " + lastName);
     }
-
-    // Enter employee ID
     public void enterEmployeeId(String employeeId) {
         WebElement employeeIdField = waitForElementToBeVisible(EmpId);
         employeeIdField.clear();
         employeeIdField.sendKeys(employeeId);
         System.out.println("Entered employee ID: " + employeeId);
     }
-
-    // Save employee
     public void clickSaveButton() {
         waitForElementToBeClickable(savebutton).click();
         System.out.println("Clicked Save button.");
         waitForElementToBeClickable(saveafteredit).click();
         System.out.println("Clicked Save button after updating personal details.");
-
-
     }
-    // Search employee by clicking the Search button
     public void searchButtonClick() {
         waitForElementToBeClickable(searchButton).click();
         System.out.println("Search button clicked successfully.");
     }
-
     public void viewEmployeeDetails() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         for (int i = 0; i < 10; i++) {
@@ -131,15 +99,12 @@ public class PIMPage {
             System.out.println("No employee details found.");
         }
     }
-
-    // Verify total records displayed on the website
     public String getTotalRecords() {
         WebElement recordsElement = waitForElementToBeVisible(totalRecords);
         String recordsText = recordsElement.getText();
         System.out.println("Total records displayed: " + recordsText);
         return recordsText;
     }
-
     public void searchEmployeeById(String employeeId) {
         WebElement empIdField = waitForElementToBeVisible(searchEmpID);
         empIdField.clear();
@@ -172,14 +137,10 @@ public class PIMPage {
             System.out.println("Error fetching employee details: " + e.getMessage());
         }
     }
-
     public void ReportGenerate() {
-        // Click on the Report tab
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement web = wait.until(ExpectedConditions.elementToBeClickable(Reporttab));
         web.click();
-
-        // Scroll down slowly to ensure elements load and are visible
         JavascriptExecutor js = (JavascriptExecutor) driver;
         for (int i = 0; i < 8; i++) {
             js.executeScript("window.scrollBy(0, 60);");
@@ -199,7 +160,6 @@ public class PIMPage {
         String recordsText = recordsElement.getText();
         return recordsText;
     }
-
     public String VerifyInfoEmp_name() {
         System.out.println("Attempting to locate the employee name using locator: " + infoname);
         try {
@@ -209,11 +169,9 @@ public class PIMPage {
             return recordsText;
         } catch (Exception e) {
             System.err.println("Error fetching employee name: " + e.getMessage());
-            throw e; // Re-throwing exception to ensure test fails appropriately
+            throw e;
         }
     }
-
-    //update personinfo testcases
     public void updateFirstName(String firstName) {
         try {
             WebElement firstNameField = waitForElementToBeVisible(firstNameedit);
@@ -262,8 +220,6 @@ public class PIMPage {
             System.out.println("Error while scrolling: " + e.getMessage());
         }
     }
-
-    //configure field
     private By configuremenu = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/span");
     private By optionalOption  = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/ul/li[1]/a");
     private By verifyTextOption = By.cssSelector(".oxd-text.oxd-text--p.orangehrm-main-title");
@@ -272,8 +228,6 @@ public class PIMPage {
     private By configureSave = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[3]/button");
     private By customOption  = By.xpath("/html/body/div/div[1]/div[1]/header/div[2]/nav/ul/li[1]/ul/li[2]/a");
     private By verifytextcustom = By.cssSelector(".oxd-text.oxd-text--h6.orangehrm-main-title");
-
-    // Click on Configure Menu
     public void clickConfigureMenu() {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -286,16 +240,12 @@ public class PIMPage {
             e.printStackTrace();
         }
     }
-
-    // Click on Optional Option
     public void clickOptionalOption() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement optionalOptionElement = wait.until(ExpectedConditions.elementToBeClickable(optionalOption));
         optionalOptionElement.click();
         System.out.println("Optional Option clicked.");
     }
-
-    // Get text from Optional Option page
     public String getVerifyTextOption() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement verifyTextOptionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(verifyTextOption));
@@ -303,40 +253,30 @@ public class PIMPage {
         System.out.println("Retrieved text from Optional Option page: " + text);
         return text;
     }
-
-    // Toggle Button 1
     public void toggleButton1() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement toggleButton1Element = wait.until(ExpectedConditions.elementToBeClickable(toggleButton1));
         toggleButton1Element.click();
         System.out.println("Toggle Button 1 clicked.");
     }
-
-    // Toggle Button 2
     public void toggleButton2() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement toggleButton2Element = wait.until(ExpectedConditions.elementToBeClickable(toggleButton2));
         toggleButton2Element.click();
         System.out.println("Toggle Button 2 clicked.");
     }
-
-    // Click Save in Configure Menu
     public void clickConfigureSave() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement configureSaveElement = wait.until(ExpectedConditions.elementToBeClickable(configureSave));
         configureSaveElement.click();
         System.out.println("Save button clicked in Configure Menu.");
     }
-
-    // Click on Custom Option
     public void clickCustomOption() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement customOptionElement = wait.until(ExpectedConditions.elementToBeClickable(customOption));
         customOptionElement.click();
         System.out.println("Custom Option clicked.");
     }
-
-    // Get text from Custom Option page
     public String getVerifyTextCustom() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement verifyTextCustomElement = wait.until(ExpectedConditions.visibilityOfElementLocated(verifytextcustom));
@@ -344,7 +284,4 @@ public class PIMPage {
         System.out.println("Retrieved text from Custom Option page: " + text);
         return text;
     }
-
-
-
 }

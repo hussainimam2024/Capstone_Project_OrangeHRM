@@ -7,10 +7,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-
 import java.io.FileInputStream;
 import java.io.IOException;
-
 public class BaseClass {
     protected WebDriver driver;
     private Sheet sheet;
@@ -18,7 +16,6 @@ public class BaseClass {
         WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
         driver.manage().window().maximize();
-
         try (FileInputStream file = new FileInputStream(excelFilePath);
              XSSFWorkbook workbook = new XSSFWorkbook(file)) {
             sheet = workbook.getSheetAt(0);
@@ -35,7 +32,7 @@ public class BaseClass {
         }
         for (Row row : sheet) {
             if (row.getCell(0) != null && row.getCell(0).getStringCellValue().equalsIgnoreCase(fieldName)) {
-                Cell cell = row.getCell(1); // Assuming the value is in the second column
+                Cell cell = row.getCell(1); 
                 if (cell != null) {
                     switch (cell.getCellType()) {
                         case STRING:
@@ -50,7 +47,6 @@ public class BaseClass {
         }
         throw new RuntimeException("Test data not found for field: " + fieldName);
     }
-
     public void tearDown() {
         if (driver != null) {
             driver.quit();

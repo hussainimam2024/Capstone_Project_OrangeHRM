@@ -75,81 +75,60 @@ public class AdminPage {
     }
     public void clickEditUser() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        for (int i = 0; i < 8; i++) {  // Scroll 8 times (adjust this for the distance to scroll)
-            js.executeScript("window.scrollBy(0, 45);");  // Scroll down by 45px each time
+        for (int i = 0; i < 8; i++) {
+            js.executeScript("window.scrollBy(0, 45);");
             try {
-                Thread.sleep(120);  // Adjust the sleep time to control the scroll speed (120ms for medium speed)
+                Thread.sleep(120);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        // Locate the edit button and click it
         WebElement editButton = driver.findElement(editUserButton);
         editButton.click();
         System.out.println("Edit user button clicked successfully.");
     }
-
-
-    // Method to edit username and save changes
     public void editUserfields(String newUsername) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement usernameElement = wait.until(ExpectedConditions.elementToBeClickable(editusername));
-
-        // Clear any existing value and input the new username
         usernameElement.clear();
         usernameElement.sendKeys(newUsername);
-
-        // Wait until the save button is clickable and click it
         WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(savebutton_Edit));
         saveButton.click();
         waitForCompletion_Edit();
         System.out.println("Username edited and changes saved successfully.");
     }
-
-    // Helper method to wait for a specific duration
     private void waitForCompletion_Edit() {
         try {
-            Thread.sleep(10000); // Wait for 10 seconds
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
     public void clickDeleteUser() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         for (int i = 0; i < 5; i++) {
             js.executeScript("window.scrollBy(0, 45);");
             try {
-                Thread.sleep(150);  // Optional, to mimic natural scrolling
+                Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        // Wait for the delete button to be clickable and click it
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(deleteUserButton));
         deleteButton.click();
-
-        // Wait for the confirmation popup to appear
         waitForPopupToBeVisible();
         System.out.println("Delete user button clicked successfully.");
     }
-
     private void waitForPopupToBeVisible() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        // Wait until the confirmation popup appears
         wait.until(ExpectedConditions.visibilityOfElementLocated(confirmDeleteButton));
         System.out.println("Delete confirmation popup displayed.");
     }
-
-    // Method to confirm delete action
     public void clickConfirmDelete() {
-        // Wait for the confirmation button to be clickable and click it
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement confirmDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(confirmDeleteButton));
         confirmDeleteBtn.click();
-
-        // Optionally, you could log a message that the delete action was confirmed
         System.out.println("Delete action confirmed successfully.");
     }
 
@@ -157,7 +136,7 @@ public class AdminPage {
         WebElement job = driver.findElement(Jobmenu);
         job.click();
         try {
-            Thread.sleep(1000);  // 10 seconds delay to allow manual data input
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -174,10 +153,4 @@ public class AdminPage {
             throw new RuntimeException(e);
         }
     }
-
-//    public void NationalTab(){
-//        WebElement element = driver.findElement(NationalitiesTab);
-//        element.click();
-//        System.out.println("National button clicked");
-//    }
 }

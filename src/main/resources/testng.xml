@@ -8,8 +8,8 @@
             <class name="com.example.capstone_project_orangehrm.Testcases.Login_AdminTest"/>
             <class name="com.example.capstone_project_orangehrm.Testcases.PIM_ModuleTest"/>
             <class name="com.example.capstone_project_orangehrm.Testcases.Admin_ModuleTest"/>
-            <class name="com.example.capstone_project_orangehrm.Testcases.Leave_ModuleTest"/>
             <class name="com.example.capstone_project_orangehrm.Testcases.Time_ModuleTest"/>
+            <class name="com.example.capstone_project_orangehrm.Testcases.Leave_ModuleTest"/>
         </classes>
     </test>
 </suite>

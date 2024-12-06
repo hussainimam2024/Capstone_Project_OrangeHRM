@@ -3,8 +3,7 @@ package com.example.capstone_project_orangehrm.Testcases;
 import com.example.capstone_project_orangehrm.POM.LeavePage;
 import com.example.capstone_project_orangehrm.POM.LoginPage;
 import com.example.capstone_project_orangehrm.base.BaseClass;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,20 +24,12 @@ public class Leave_ModuleTest extends BaseClass {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
         String password = getTestData("Apassword");
-
-        // Navigate to the base URL
         driver.get(baseUrl);
-
-        // Login logic (use LoginPage class methods if available)
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLogin();
-
-        // Navigate to the Leave module
         leavePage.clickLeaveTab();
         leavePage.clickLeaveButton();
-
-        // Enter a reason for leave and apply
         leavePage.enterComment("Family emergency leave request.");
         leavePage.clickApplyButton();
 
@@ -49,16 +40,10 @@ public class Leave_ModuleTest extends BaseClass {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
         String password = getTestData("Apassword");
-
-        // Navigate to the base URL
         driver.get(baseUrl);
-
-        // Login logic (use LoginPage class methods if available)
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLogin();
-
-        // Navigate to the Leave module
         leavePage.clickLeaveTab();
         leavePage.MyLeave();
         String totalleave_info = leavePage.getTotalLeave();
@@ -70,19 +55,30 @@ public class Leave_ModuleTest extends BaseClass {
         String baseUrl = getTestData("baseUrl");
         String username = getTestData("Ausername");
         String password = getTestData("Apassword");
-
-        // Navigate to the base URL
         driver.get(baseUrl);
-
-        // Login logic (use LoginPage class methods if available)
         loginPage.enterUsername(username);
         loginPage.enterPassword(password);
         loginPage.clickLogin();
-
-        // Actions to trigger the failure
         leavePage.clickLeaveTab();
         leavePage.clickLeaveAssignMenu();
         leavePage.fillCommentAndAssignLeave();
+    }
+    @Test(priority = 4)
+    public void Entitlements() {
+        String baseUrl = getTestData("baseUrl");
+        String username = getTestData("Ausername");
+        String password = getTestData("Apassword");
+        driver.get(baseUrl);
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
+        loginPage.clickLogin();
+        leavePage.clickLeaveTab();
+        leavePage.clickEnititlement();
+        leavePage.clickAddEntitlement();
+        String actualHeading = leavePage.verifEntitlementHeading();
+        String expectedHeading = "Invalid Heading";
+        Assert.assertEquals(actualHeading, expectedHeading, "Heading does not match!");
+        leavePage.submitEntitle();
     }
     @AfterMethod
     public void tearDown() {
